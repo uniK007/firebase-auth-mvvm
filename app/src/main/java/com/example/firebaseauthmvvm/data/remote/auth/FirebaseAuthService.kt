@@ -2,6 +2,7 @@ import com.example.firebaseauthmvvm.data.remote.auth.AuthService
 import com.example.firebaseauthmvvm.domain.model.User
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 
 class FirebaseAuthService @Inject constructor(
     private val firebaseAuth: FirebaseAuth

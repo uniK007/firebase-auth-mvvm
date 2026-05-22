@@ -2,6 +2,7 @@ package com.example.firebaseauthmvvm.domain.usecase
 
 import com.example.firebaseauthmvvm.domain.model.User
 import com.example.firebaseauthmvvm.domain.repository.AuthRepository
+import javax.inject.Inject
 
 class GetCurrentUserUseCase @Inject constructor(
     private val repository: AuthRepository

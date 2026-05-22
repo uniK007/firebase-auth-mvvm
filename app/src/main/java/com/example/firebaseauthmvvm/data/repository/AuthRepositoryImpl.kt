@@ -3,6 +3,7 @@ package com.example.firebaseauthmvvm.data.repository
 import com.example.firebaseauthmvvm.data.remote.auth.AuthService
 import com.example.firebaseauthmvvm.domain.model.User
 import com.example.firebaseauthmvvm.domain.repository.AuthRepository
+import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService
