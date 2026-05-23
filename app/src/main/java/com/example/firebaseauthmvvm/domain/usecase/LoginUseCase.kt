@@ -3,6 +3,7 @@ package com.example.firebaseauthmvvm.domain.usecase
 import com.example.firebaseauthmvvm.domain.model.User
 import com.example.firebaseauthmvvm.domain.repository.AuthRepository
 import javax.inject.Inject
+import com.example.firebaseauthmvvm.common.Result
 
 class LoginUseCase @Inject constructor(
     private val repository: AuthRepository

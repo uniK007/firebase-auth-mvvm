@@ -4,6 +4,7 @@ import com.example.firebaseauthmvvm.data.remote.auth.AuthService
 import com.example.firebaseauthmvvm.domain.model.User
 import com.example.firebaseauthmvvm.domain.repository.AuthRepository
 import javax.inject.Inject
+import com.example.firebaseauthmvvm.common.Result
 
 class AuthRepositoryImpl @Inject constructor(
     private val authService: AuthService
@@ -13,9 +14,9 @@ class AuthRepositoryImpl @Inject constructor(
         password: String
     ): Result<User> {
         return try {
-            Result.success(authService.login(email, password))
+            Result.Success(authService.login(email, password))
         } catch (e: Exception){
-            Result.failure(e)
+            Result.Error(e.message ?: "Login error")
         }
     }
 
@@ -24,9 +25,9 @@ class AuthRepositoryImpl @Inject constructor(
         password: String
     ): Result<User> {
         return try {
-            Result.success(authService.register(email, password))
+            Result.Success(authService.register(email, password))
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.Error(e.message ?: "User can't be registered")
         }
     }
 
