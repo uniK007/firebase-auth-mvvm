@@ -3,6 +3,7 @@ package com.example.firebaseauthmvvm.presentation.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firebaseauthmvvm.common.Result
+import com.example.firebaseauthmvvm.common.ValidationUtils
 import com.example.firebaseauthmvvm.domain.usecase.LoginUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,10 +22,23 @@ class LoginViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
      fun login(email: String, password: String) {
+         val emailErr = ValidationUtils.validateEmail(email)
+         val passwordErr = ValidationUtils.validatePassword(password)
+
+         if (emailErr !=null || passwordErr!=null) {
+             _state.update {
+                 it.copy(
+                     emailValidationError = emailErr,
+                     passwordValidationError = passwordErr
+                 )
+             }
+             return
+         }
+
         viewModelScope.launch {
             _state.update {
                 it.copy(
-                    isLoading = true, error = null
+                    isLoading = true,
                 )
             }
 
