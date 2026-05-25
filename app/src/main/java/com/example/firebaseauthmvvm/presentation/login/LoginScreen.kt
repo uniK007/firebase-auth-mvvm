@@ -49,6 +49,12 @@ fun LoginScreen (
                 label = {
                     Text("Email")
                 },
+                isError = state.emailValidationError != null,
+                supportingText = {
+                    state.emailValidationError?.let {
+                        Text(text = it)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             )
 
@@ -61,6 +67,12 @@ fun LoginScreen (
                 },
                 label = {
                     Text("Password")
+                },
+                isError = state.passwordValidationError != null,
+                supportingText = {
+                    state.passwordValidationError?.let {
+                        Text(text = it)
+                    }
                 },
                 visualTransformation = PasswordVisualTransformation(),
                 modifier = Modifier.fillMaxWidth()
