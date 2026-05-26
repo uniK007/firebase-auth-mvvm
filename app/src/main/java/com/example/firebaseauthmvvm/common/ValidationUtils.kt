@@ -1,6 +1,7 @@
 package com.example.firebaseauthmvvm.common
 
 import android.util.Patterns
+import com.example.firebaseauthmvvm.domain.model.PasswordValidationResult
 
 object ValidationUtils {
     fun validateEmail(email: String): String? {
@@ -15,7 +16,7 @@ object ValidationUtils {
         }
     }
 
-    fun validatePassword(
+    fun validatePasswordSimple(
         password: String
     ): String? {
         return when {
@@ -33,5 +34,17 @@ object ValidationUtils {
 
             else -> null
         }
+    }
+
+    fun validatePassword(
+        password: String
+    ) : PasswordValidationResult {
+        return PasswordValidationResult(
+            hasMinLength = password.length >= 8,
+            hasNumber = password.any { it.isDigit() },
+            hasLowerCase = password.any { it.isLowerCase() },
+            hasUpperCase = password.any { it.isUpperCase() },
+            hasSpecialCharacter = password.any { !it.isLetterOrDigit() }
+        )
     }
 }
