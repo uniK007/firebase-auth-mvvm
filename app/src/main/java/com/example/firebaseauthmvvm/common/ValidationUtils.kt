@@ -21,9 +21,15 @@ object ValidationUtils {
         return when {
             password.isBlank() -> "Password is required"
 
-            password.length < 6 -> "Password must be at least 6 characters"
+            password.length < 8 -> "Password must be at least 8 characters"
 
             !password.any { it.isDigit() } -> "Password must contain a number"
+
+            !password.any { it.isLowerCase() } -> "Password must contain a lowercase"
+
+            !password.any { it.isUpperCase() } -> "Password must contain an uppercase letter"
+
+            !password.any { !it.isLetterOrDigit() } -> "Password must contain a special character"
 
             else -> null
         }
