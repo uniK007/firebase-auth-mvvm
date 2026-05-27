@@ -38,6 +38,10 @@ class MainActivity : ComponentActivity() {
                             viewModel.login(
                                 email, password
                             )
+                        },
+
+                        onPasswordChanged = {
+                            viewModel.onPasswordChanged(it)
                         }
                     )
                 }

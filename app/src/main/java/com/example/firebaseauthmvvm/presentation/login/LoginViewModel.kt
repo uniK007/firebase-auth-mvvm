@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
          val emailErr = ValidationUtils.validateEmail(email)
          val passwordErr = ValidationUtils.validatePassword(password)
 
-         if (emailErr !=null || passwordErr!=null) {
+         if (emailErr !=null || !passwordErr.isValid()) {
              _state.update {
                  it.copy(
                      emailValidationError = emailErr,
@@ -68,5 +68,11 @@ class LoginViewModel @Inject constructor(
             }
             }
         }
+    }
+
+    fun onPasswordChanged(password: String) {
+        val validation = ValidationUtils.validatePassword(password)
+
+        _state.update { it.copy(passwordValidationError = validation) }
     }
 }
