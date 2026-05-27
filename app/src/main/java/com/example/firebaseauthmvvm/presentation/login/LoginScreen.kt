@@ -12,11 +12,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.firebaseauthmvvm.presentation.widgets.PasswordValidationItem
 
 @Composable
 fun LoginScreen (
     state: LoginState,
-    onLoginClick: (String, String) -> Unit
+    onLoginClick: (String, String) -> Unit,
+    onPasswordChanged: (String) -> Unit
 ) {
     var email by remember {
         mutableStateOf("")
@@ -66,15 +69,10 @@ fun LoginScreen (
                 value = password,
                 onValueChange = {
                     password = it
+                    onPasswordChanged(it)
                 },
                 label = {
                     Text("Password")
-                },
-                isError = state.passwordValidationError != null,
-                supportingText = {
-                    state.passwordValidationError?.let {
-                        Text(text = it)
-                    }
                 },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password
@@ -84,6 +82,31 @@ fun LoginScreen (
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+
+            PasswordValidationItem(
+                text = "8+ Characters",
+                isValid = state.passwordValidationError.hasMinLength
+            )
+
+            PasswordValidationItem(
+                text = "Number",
+                isValid = state.passwordValidationError.hasNumber
+            )
+
+            PasswordValidationItem(
+                text = "Lowercase Letter",
+                isValid = state.passwordValidationError.hasLowerCase
+            )
+
+            PasswordValidationItem(
+                text = "Uppercase Letter",
+                isValid = state.passwordValidationError.hasUpperCase
+            )
+
+            PasswordValidationItem(
+                text = "Special Character",
+                isValid = state.passwordValidationError.hasSpecialCharacter
+            )
 
             Button(
                 onClick = {
