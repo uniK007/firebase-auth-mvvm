@@ -19,7 +19,8 @@ import com.example.firebaseauthmvvm.presentation.widgets.PasswordValidationItem
 fun LoginScreen (
     state: LoginState,
     onLoginClick: (String, String) -> Unit,
-    onPasswordChanged: (String) -> Unit
+    onPasswordChanged: (String) -> Unit,
+    onRegisterClick: () -> Unit
 ) {
     var email by remember {
         mutableStateOf("")
@@ -115,6 +116,15 @@ fun LoginScreen (
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Login")
+            }
+
+            TextButton(
+                onClick = onRegisterClick
+            ) {
+
+                Text(
+                    text = "Create Account"
+                )
             }
         }
 

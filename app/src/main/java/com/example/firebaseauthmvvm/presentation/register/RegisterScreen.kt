@@ -15,6 +15,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -35,7 +36,8 @@ fun RegisterScreen(
     onRegisterClick: (
             String, String, String
             ) -> Unit,
-    onPasswordChanged: (String) -> Unit
+    onPasswordChanged: (String) -> Unit,
+    onLoginClick: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -176,6 +178,12 @@ fun RegisterScreen(
                 enabled = !state.isLoading,
                 modifier = Modifier.fillMaxWidth()) {
                 Text("Register")
+            }
+
+            TextButton(
+                onClick = onLoginClick
+            ) {
+                Text("Already have an account?")
             }
         }
 
