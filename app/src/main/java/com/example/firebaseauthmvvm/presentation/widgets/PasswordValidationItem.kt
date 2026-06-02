@@ -19,9 +19,7 @@ fun PasswordValidationItem(
                 if (isValid) "✓"
             else "x"
         )
-
         Spacer(modifier = Modifier.width(8.dp))
-
         Text(text = text)
     }
 }

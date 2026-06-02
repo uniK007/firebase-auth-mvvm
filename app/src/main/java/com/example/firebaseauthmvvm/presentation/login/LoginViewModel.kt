@@ -43,6 +43,12 @@ class LoginViewModel @Inject constructor(
             }
 
             when (val result = loginUseCase(email, password)) {
+                is Result.Loading -> {
+                    _state.update {
+                        it.copy(isLoading = true)
+                    }
+                }
+
                 is Result.Success -> {
                     _state.update {
                         it.copy(
@@ -60,12 +66,6 @@ class LoginViewModel @Inject constructor(
                         )
                     }
                 }
-
-                is Result.Loading -> {
-                    _state.update {
-                        it.copy(isLoading = true)
-                    }
-            }
             }
         }
     }
