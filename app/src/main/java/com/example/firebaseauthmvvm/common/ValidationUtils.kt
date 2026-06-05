@@ -15,7 +15,7 @@ object ValidationUtils {
             else -> null
         }
     }
-    
+
     fun validatePassword(
         password: String
     ) : PasswordValidationResult {

@@ -8,6 +8,10 @@ data class PasswordValidationResult(
     val hasSpecialCharacter: Boolean = false
 ) {
     fun isValid(): Boolean {
-        return hasMinLength && hasNumber && hasLowerCase && hasUpperCase && hasSpecialCharacter
+        return hasMinLength
+                && hasNumber
+                && hasLowerCase
+                && hasUpperCase
+                && hasSpecialCharacter
     }
 }
