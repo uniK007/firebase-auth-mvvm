@@ -15,8 +15,7 @@ object ValidationUtils {
             else -> null
         }
     }
-
-    // minimum 8 digit password required
+    
     fun validatePassword(
         password: String
     ) : PasswordValidationResult {
